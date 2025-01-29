@@ -1,31 +1,29 @@
-#include <iostream>
-#include <vector>
 #include "trie.hpp"
+#include <iostream>
 
+int main(int argc, char *argv[]) {
+  Trie trie;
+  std::cout << "expected false, is: " << trie.exists("hello") << std::endl;
 
-int main(int argc, char* argv[]) {
-    Trie trie;
-    cout << "expected false, is: " << trie.exists("hello") << endl;
+  trie.insert("hello");
+  std::cout << "expected true, is: " << trie.exists("hello") << std::endl;
+  std::cout << "expected true, is: " << trie.startsWith("he") << std::endl;
+  std::cout << "expected false, is: " << trie.exists("he") << std::endl;
 
-    trie.insert("hello");
-    cout << "expected true, is: " << trie.exists("hello") << endl;
-    cout << "expected true, is: " << trie.startsWith("he") << endl;
-    cout << "expected false, is: " << trie.exists("he") << endl;
+  trie.insert("world");
+  std::cout << "expected true, is: " << trie.exists("world") << std::endl;
+  std::cout << "expected false, is: " << trie.startsWith("wed") << std::endl;
+  std::cout << "expected false, is: " << trie.exists("worldel") << std::endl;
 
-    trie.insert("world");
-    cout << "expected true, is: " << trie.exists("world") << endl;
-    cout << "expected false, is: " << trie.startsWith("wed") << endl;
-    cout << "expected false, is: " << trie.exists("worldel") << endl;
+  trie.insert("wordle");
+  std::cout << "expected false, is: " << trie.exists("worldel") << std::endl;
+  std::cout << "expected true, is: " << trie.startsWith("word") << std::endl;
+  std::cout << "expected true, is: " << trie.exists("wordle") << std::endl;
 
-    trie.insert("wordle");
-    cout << "expected false, is: " << trie.exists("worldel") << endl;
-    cout << "expected true, is: " << trie.startsWith("word") << endl;
-    cout << "expected true, is: " << trie.exists("wordle") << endl;
+  trie.insert("he");
+  std::cout << "expected false, is: " << trie.exists("h") << std::endl;
+  std::cout << "expected true, is: " << trie.startsWith("he") << std::endl;
+  std::cout << "expected true, is: " << trie.exists("he") << std::endl;
 
-    trie.insert("he");
-    cout << "expected false, is: " << trie.exists("h") << endl;
-    cout << "expected true, is: " << trie.startsWith("he") << endl;
-    cout << "expected true, is: " << trie.exists("he") << endl;
-    
-    return 0;
+  return 0;
 }

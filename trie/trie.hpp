@@ -2,30 +2,27 @@
 #define TRIE_H
 
 #include <vector>
-#include <iostream>
-
-using namespace std;
 
 struct TrieNode {
-    vector<TrieNode*> children;
-    bool isWord;
+  std::vector<TrieNode *> children;
 
-    TrieNode() : children(26, nullptr), isWord(false){ }
+  bool isWord;
+
+  TrieNode() : children(26, nullptr), isWord(false) {}
 };
-
 
 class Trie {
 public:
-    Trie() : root(new TrieNode()) { }
+  Trie() : root(new TrieNode()) {}
 
-    void insert(string word);
+  void insert(std::string word);
 
-    bool exists(string word);
+  bool exists(std::string word);
 
-    bool startsWith(string prefix);
+  bool startsWith(std::string prefix);
 
 private:
-    TrieNode* root;
+  TrieNode *root;
 };
 
 #endif

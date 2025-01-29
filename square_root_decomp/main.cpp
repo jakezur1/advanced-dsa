@@ -1,16 +1,14 @@
-#include <vector>
-#include <iostream>
 #include "square_root_decomp.hpp"
+#include <iostream>
 
-using namespace std;
+int main(int argc, char *argv[]) {
+  std::vector<int> data = {4, 2, -1, 1, 4, 8, 3};
 
-int main(int argc, char* argv[]) {
-    vector<int> data = {4, 2, -1, 1, 4, 8, 3};
+  SquareRootDecomp srd(data);
+  std::cout << srd.querySumRange(1, 6) << std::endl;
 
-    SquareRootDecomp srd(data);
-    cout << srd.querySumRange(1, 6) << endl;
-    srd.update(2, -8);
-    cout << srd.querySumRange(1, 6) << endl;
+  srd.update(2, -8);
+  std::cout << srd.querySumRange(1, 6) << std::endl;
 
-    return 0;
+  return 0;
 }

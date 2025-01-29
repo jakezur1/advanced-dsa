@@ -1,13 +1,12 @@
+#include "rsq_segment_tree.hpp"
+
 #include <iostream>
 #include <vector>
-#include "rsq_segment_tree.hpp"
-using namespace std;
 
+int main(int argc, char *argv[]) {
+  std::vector<int> data = {4, 2, -1, 1, 4, 8, 3};
 
-int main(int argc, char* argv[]) {
-    vector<int> data = {4, 2, -1, 1, 4, 8, 3};
-    
-    RSQSegmentTree rsq(data);
-    cout << rsq.querySumRange(2, 6);
-    return 0;
+  RSQSegmentTree rsq(data);
+  std::cout << rsq.querySumRange(2, 6);
+  return 0;
 }

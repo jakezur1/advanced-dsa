@@ -1,38 +1,41 @@
-#include <iostream>
-#include <vector>
 #include "trie.hpp"
+#include <vector>
 
-using namespace std;
+void Trie::insert(std::string word) {
+  TrieNode *curr = root;
 
-void Trie::insert(string word) {
-    TrieNode* curr = root;
-    for (char c: word) {
-        if (curr->children[c - 'a'] == nullptr) {
-            curr->children[c - 'a'] = new TrieNode();
-        }
-        curr = curr->children[c - 'a'];
-    }
-    curr->isWord = true;
+  for (char c : word) {
+    if (curr->children[c - 'a'] == nullptr)
+      curr->children[c - 'a'] = new TrieNode();
+
+    curr = curr->children[c - 'a'];
+  }
+
+  curr->isWord = true;
 }
 
-bool Trie::exists(string word) {
-    TrieNode* curr = root;
-    for (char c: word) {
-        if (curr->children[c - 'a'] == nullptr) {
-            return false;
-        }
-        curr = curr->children[c - 'a'];
-    }
-    return curr->isWord;
+bool Trie::exists(std::string word) {
+  TrieNode *curr = root;
+
+  for (char c : word) {
+    if (curr->children[c - 'a'] == nullptr)
+      return false;
+
+    curr = curr->children[c - 'a'];
+  }
+
+  return curr->isWord;
 }
 
-bool Trie::startsWith(string prefix) {
-    TrieNode* curr = root;
-    for (char c: prefix) {
-        if (curr->children[c - 'a'] == nullptr) {
-            return false;
-        }
-        curr = curr->children[c - 'a'];
-    }
-    return true;
+bool Trie::startsWith(std::string prefix) {
+  TrieNode *curr = root;
+
+  for (char c : prefix) {
+    if (curr->children[c - 'a'] == nullptr)
+      return false;
+
+    curr = curr->children[c - 'a'];
+  }
+
+  return true;
 }
