@@ -3,7 +3,8 @@
 
 #include <vector>
 
-template <typename Combine> class SegmentTree {
+template <typename Combine>
+class SegmentTree {
 public:
   SegmentTree(std::vector<int> data) {
     dataSize = data.size();
@@ -23,8 +24,11 @@ public:
 
 private:
   std::vector<int> tree;
+
   int treeSize;
+
   int dataSize;
+
   Combine combine;
 
   bool isPower2(int n) { return (n & (n - 1)) == 0; }
@@ -36,6 +40,7 @@ private:
       tree[idx] = data[l];
       return;
     }
+
     int leftChildIdx = 2 * idx + 1;
     int rightChildIdx = 2 * idx + 2;
 
@@ -46,20 +51,21 @@ private:
   }
 
   int _queryRange(int qL, int qR, int idx, int l, int r) {
-    if (qL == l && qR == r) {
+    if (qL == l && qR == r)
       return tree[idx];
-    }
+
     int leftChildIdx = 2 * idx + 1;
     int rightChildIdx = 2 * idx + 2;
 
     int m = (l + r) / 2;
-    if (qL > m) {
+
+    if (qL > m)
       return _queryRange(qL, qR, rightChildIdx, m + 1, r);
-    } else if (qR <= m) {
+    else if (qR <= m)
       return _queryRange(qL, qR, leftChildIdx, l, m);
-    }
-    return combine(_queryRange(qL, m, leftChildIdx, l, m),
-                   _queryRange(m + 1, qR, rightChildIdx, m + 1, r));
+    else
+      return combine(_queryRange(qL, m, leftChildIdx, l, m),
+                     _queryRange(m + 1, qR, rightChildIdx, m + 1, r));
   }
 
   void _update(int idx, int val, int currIdx, int l, int r) {
@@ -67,16 +73,16 @@ private:
       tree[currIdx] = val;
       return;
     }
+
     int leftChildIdx = 2 * currIdx + 1;
     int rightChildIdx = 2 * currIdx + 2;
 
     int m = (l + r) / 2;
 
-    if (idx > m) {
+    if (idx > m)
       _update(idx, val, rightChildIdx, m + 1, r);
-    } else {
+    else
       _update(idx, val, leftChildIdx, l, m);
-    }
 
     tree[currIdx] = combine(tree[leftChildIdx], tree[rightChildIdx]);
   }

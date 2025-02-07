@@ -13,6 +13,7 @@ public:
 
 private:
   std::vector<int> tree;
+
   int treeSize = 0;
 
   int dataSize = 0;
